@@ -128,4 +128,5 @@ from django.urls import reverse_lazy
 
 LOGIN_URL = reverse_lazy('login')
 # LOGIN_REDIRECT_URL = reverse_lazy('profile')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
