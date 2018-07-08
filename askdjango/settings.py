@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'  # 현재 시스템에 대한 디폴트 언어설정 (사용자마다 다르게 적용 가능)
 
 TIME_ZONE = 'UTC'
 
