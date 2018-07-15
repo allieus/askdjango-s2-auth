@@ -1,8 +1,15 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import UserManager as AuthUserManager
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.db import models
+
+
+class UserManager(AuthUserManager):
+    def create_superuser(self, username, email, password, **extra_fields):
+        extra_fields.setdefault('sex', 'm')
+        return super().create_superuser(username, email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -12,6 +19,8 @@ class User(AbstractUser):
                 ('f', 'female'),
                 ('m', 'male'),
             ))
+
+    objects = UserManager()
 
 
 class Profile(models.Model):
