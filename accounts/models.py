@@ -1,7 +1,17 @@
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.db import models
+
+
+class User(AbstractUser):
+    sex = models.CharField(
+            max_length=1,
+            choices=(
+                ('f', 'female'),
+                ('m', 'male'),
+            ))
 
 
 class Profile(models.Model):
