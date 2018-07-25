@@ -1,8 +1,12 @@
 from dateutil.relativedelta import relativedelta
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
+from django.contrib.auth.models import Permission
 from django.utils import timezone
 from .models import User, Profile
+
+
+admin.site.register(Permission)
 
 
 class UserDateJoinedFilter(admin.SimpleListFilter):
