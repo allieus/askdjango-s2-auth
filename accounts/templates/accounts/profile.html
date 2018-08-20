@@ -9,6 +9,9 @@
     <h3>Bio</h3>
     {{ user.profile.bio|default:"&dash;" }}
 
+    <h3>WebSite URL</h3>
+    {{ user.profile.website_url|default:"&dash;" }}
+
     <hr/>
 
     <a href="{% url "profile_edit" %}">프로필 수정</a>

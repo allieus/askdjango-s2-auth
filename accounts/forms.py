@@ -5,21 +5,30 @@ from .models import User, Profile
 
 
 class SignupForm(UserCreationForm):
+    bio = forms.CharField(required=False)
+    website_url = forms.URLField(required=False)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].validators = [validate_email]
         self.fields['username'].help_text = 'Enter Email Format.'
         self.fields['username'].label = 'Email'
 
-    def save(self, commit=True):
+    def save(self):
         user = super().save(commit=False)
         user.email = user.username
-        if commit:
-            user.save()
+        user.save()
+
+        bio = self.cleaned_data.get('bio', None)
+        website_url = self.cleaned_data.get('website_url', None)
+
+        Profile.objects.create(user=user, bio=bio, website_url=website_url)
+
         return user
 
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = UserCreationForm.Meta.fields + ('bio', 'website_url')
 
 
     '''

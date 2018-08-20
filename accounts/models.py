@@ -38,7 +38,6 @@ def on_post_save_for_user(sender, **kwargs):
     if kwargs['created']:
         # 가입시기
         user = kwargs['instance']
-        Profile.objects.create(user=user)
 
         # 환영 이메일 보내기
         send_mail(
