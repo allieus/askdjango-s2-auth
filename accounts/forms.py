@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import validate_email
+from .models import User
 
 
 class SignupForm(UserCreationForm):
@@ -15,6 +16,10 @@ class SignupForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+
 
     '''
     def clean_username(self):
